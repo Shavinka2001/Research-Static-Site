@@ -1,0 +1,123 @@
+import type { Metadata } from "next";
+
+import { PageHeader } from "@/components/landing/primitives/PageHeader";
+import { Container, Section } from "@/components/landing/primitives/Section";
+import { EnquiryForm } from "@/components/landing/EnquiryForm";
+import {
+  DEPARTMENT_ADDRESS,
+  GENERAL_CONTACTS,
+} from "@/components/landing/data/contact";
+import { SUPERVISORS, TEAM } from "@/components/landing/data/team";
+
+export const metadata: Metadata = {
+  title: "Contact us",
+  description:
+    "General contact details for the Construction AI research group, and a message template for enquiries.",
+};
+
+export default function ContactPage() {
+  return (
+    <>
+      <PageHeader
+        eyebrow="Contact us"
+        title="Get in touch."
+        lede="General enquiries about the research, requests for documents, or questions about the platform."
+      />
+
+      <Section id="contact" className="py-section lg:py-section-lg">
+        <Container>
+          <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
+            {/* Directory. */}
+            <div className="min-w-0 lg:col-span-5">
+              <h2 className="lp-label text-slate-500">
+                General contacts
+              </h2>
+
+              <dl className="mt-5 border-t border-slate-200">
+                {GENERAL_CONTACTS.map((channel) => (
+                  <div
+                    key={channel.label}
+                    className="flex flex-col gap-1 border-b border-slate-200 py-4 sm:flex-row sm:items-baseline sm:gap-6"
+                  >
+                    <dt className="lp-label text-slate-500 sm:w-32 sm:shrink-0">
+                      {channel.label}
+                    </dt>
+                    <dd>
+                      <a
+                        href={channel.href}
+                        className="lp-focus inline-flex min-h-6 items-center font-mono text-body-sm text-ink underline decoration-slate-300 decoration-1 underline-offset-4 transition-colors hover:decoration-gold ring-offset-white"
+                      >
+                        {channel.value}
+                      </a>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+
+              {/* Per-member addresses. */}
+              <h2 className="mt-12 lp-label text-slate-500">
+                Researchers
+              </h2>
+
+              <dl className="mt-5 border-t border-slate-200">
+                {TEAM.filter((member) => member.email).map((member) => (
+                  <div
+                    key={member.id}
+                    className="flex flex-col gap-1 border-b border-slate-200 py-4 sm:flex-row sm:items-baseline sm:gap-6"
+                  >
+                    <dt className="text-body-sm font-semibold text-ink sm:w-32 sm:shrink-0">
+                      {member.name}
+                    </dt>
+                    <dd className="min-w-0">
+                      <a
+                        href={`mailto:${member.email}`}
+                        className="lp-focus inline-flex min-h-6 items-center break-all font-mono text-caption text-slate-600 underline decoration-slate-300 decoration-1 underline-offset-4 transition-colors hover:text-ink hover:decoration-gold ring-offset-white"
+                      >
+                        {member.email}
+                      </a>
+                      <span className="mt-0.5 block lp-label text-slate-500">
+                        {member.componentLabel}
+                      </span>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+
+              {/* Postal address. */}
+              <h2 className="mt-12 lp-label text-slate-500">
+                Department
+              </h2>
+              <address className="mt-4 not-italic text-body-sm leading-[1.8] text-slate-600">
+                {DEPARTMENT_ADDRESS.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
+              </address>
+
+              <p className="mt-6 text-caption leading-relaxed text-slate-500">
+                For matters concerning assessment or supervision, please contact{" "}
+                {SUPERVISORS[0]?.name ?? "the supervisor"} directly.
+              </p>
+            </div>
+
+            {/* Message template. */}
+            <div className="min-w-0 lg:col-span-7">
+              <h2 className="lp-label text-slate-500">
+                Message template
+              </h2>
+              <p className="mt-3 max-w-xl text-body leading-[1.7] text-slate-600">
+                Fill this in and it will open in your own mail application,
+                already addressed and formatted.
+              </p>
+
+              <div className="mt-8">
+                <EnquiryForm />
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+    </>
+  );
+}
