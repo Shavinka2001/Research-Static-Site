@@ -5,15 +5,27 @@ import type {
 
 /*
  * ===========================================================================
- *  >>> PLACEHOLDER DATA — add the real links before publishing. <<<
+ *  Project documents.
  *
- *  Set `href` to the published file (a Drive link, a repository path, or a
- *  file under /public). Leave it `null` while a document is still pending:
- *  the page then renders it as "Pending" instead of a dead link, which is
- *  what the guidelines ask for.
+ *  Published files live under /public/documents and are linked from here.
+ *  Leave `href` as `null` while a document is still pending: the page then
+ *  renders it as "Pending" instead of a dead link, which is what the
+ *  guidelines ask for.
+ *
+ *  To publish a pending document, export it to PDF, copy it into
+ *  public/documents/ and set `href` to "/documents/<file name>". Keep the
+ *  whole site under the 20 MB course-web limit.
  * ===========================================================================
  */
 export const PROJECT_DOCUMENTS: readonly ProjectDocument[] = [
+  {
+    id: "topic-assessment",
+    title: "Topic Assessment Form (R26-IT-154)",
+    kind: "proposal",
+    author: "Research group",
+    submittedOn: "2026-01-14",
+    href: null,
+  },
   {
     id: "charter",
     title: "Project Charter",
@@ -48,44 +60,64 @@ export const PROJECT_DOCUMENTS: readonly ProjectDocument[] = [
   },
   {
     id: "final-main",
-    title: "Final Dissertation (main document)",
+    title: "Common Integrated Solution Report (main document)",
     kind: "final",
     author: "Research group",
-    submittedOn: null,
+    submittedOn: "2026-11-10",
     href: null,
   },
   {
     id: "final-c1",
-    title: "Final Document — Component 1: Site & Geospatial Intelligence",
+    title:
+      "Individual Thesis — Component 1: Automated Geospatial Site Analysis for Pre-Construction Feasibility",
     kind: "final",
-    author: "Researcher One",
-    submittedOn: null,
+    author: "Ranaweera K. A. (IT22542724)",
+    submittedOn: "2026-11-10",
     href: null,
   },
   {
     id: "final-c2",
     title:
-      "Final Document — Component 2: Architectural Validation & Generative BIM",
+      "Individual Thesis — Component 2: Architectural Plan Validation and Metric Extraction",
     kind: "final",
-    author: "Researcher Two",
+    author: "Shavinka Y. G. K. (IT22110770)",
     submittedOn: null,
     href: null,
   },
   {
     id: "final-c3",
-    title: "Final Document — Component 3: Regulatory Approval & Compliance",
+    title:
+      "Individual Thesis — Component 3: Rule-Based Regulatory Compliance Screening",
     kind: "final",
-    author: "Researcher Three",
+    author: "Samuditha T. A. V. (IT22542892)",
     submittedOn: null,
     href: null,
   },
   {
     id: "final-c4",
-    title: "Final Document — Component 4: Cost, Scheduling & Lifecycle",
+    title:
+      "Individual Thesis — Component 4: Machine Learning Based Service Life and Whole-Life Cost Prediction",
     kind: "final",
-    author: "Researcher Four",
-    submittedOn: null,
+    author: "Shamindi E. E. (IT22547460)",
+    submittedOn: "2026-11-10",
     href: null,
+  },
+  {
+    id: "research-paper",
+    title:
+      "Research Paper — Construct AI: An Integrated AI-Driven Framework for Automated Pre-Construction Feasibility Analysis and Decision Support",
+    kind: "other",
+    author: "Research group, with Mr. Ravi Supunya and Mrs. Suriya Kumari",
+    submittedOn: null,
+    href: "/documents/R26-IT-154_Research_Paper.pdf",
+  },
+  {
+    id: "research-poster",
+    title: "Research Poster — ConstructAI",
+    kind: "other",
+    author: "Research group",
+    submittedOn: null,
+    href: "/documents/R26-IT-154_Research_Poster.pdf",
   },
 ] satisfies readonly ProjectDocument[];
 
@@ -94,7 +126,7 @@ export const DOCUMENT_KIND_LABELS: Record<ProjectDocument["kind"], string> = {
   proposal: "Proposal",
   checklist: "Checklist",
   final: "Final submission",
-  other: "Other",
+  other: "Publications",
 };
 
 /*
@@ -117,7 +149,7 @@ export const PRESENTATIONS: readonly Presentation[] = [
     date: null,
     href: null,
     summary:
-      "First working implementations: site scoring, plan perception and the initial compliance workflow.",
+      "First working implementations of the four components against the shared project state.",
   },
   {
     id: "progress-2",
@@ -125,7 +157,7 @@ export const PRESENTATIONS: readonly Presentation[] = [
     date: null,
     href: null,
     summary:
-      "The integrated pipeline, with clash resolution, generative structural layout and the costing workspace.",
+      "The integrated pipeline, from a map pin and a floor plan to a single feasibility report.",
   },
   {
     id: "final-presentation",

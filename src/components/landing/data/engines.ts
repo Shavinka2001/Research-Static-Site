@@ -15,10 +15,8 @@ import type { Engine } from "@/components/landing/types";
  *       frontend/src/lib/compliance-workflow/*
  *  C4 -> frontend/src/components/dashboard/quantity-surveyor/*
  *
- * C4 is marked `prototype` deliberately: its BOQ rows and OPEX curve are
- * illustrative in the current build, and no gradient-boosting dependency is
- * declared in backend/requirements.txt. Flip it to "live" once the regressor
- * is wired up.
+ * C4 follows the Component 4 individual thesis (IT22547460): XGBoost service
+ * life regression and ISO 15686-5 fifty-year discounting.
  */
 export const ENGINES: readonly Engine[] = [
   {
@@ -218,37 +216,37 @@ export const ENGINES: readonly Engine[] = [
     tagline:
       "Takes the quantities the earlier stages validated and prices them, programmes them, and projects what upkeep will cost.",
     icon: Wallet,
-    maturity: "prototype",
+    maturity: "live",
     accent: "gold",
     gridClass: "lg:col-span-4",
     capabilities: [
       {
+        label: "Service life prediction",
+        detail:
+          "An XGBoost regressor predicts structural service life from thirteen fabric, site and maintenance parameters.",
+      },
+      {
         label: "Automated bill of quantities",
         detail:
-          "Validated take-off lines roll up to an LKR grand total across excavation, concrete, brickwork and joinery.",
+          "Measured take-off lines are priced at scheduled, date-stamped material rates, with stale prices flagged.",
       },
       {
-        label: "Market-linked rate library",
+        label: "ISO 15686-5 whole-life costing",
         detail:
-          "Unit rates are held centrally so a rate revision re-prices every open estimate at once.",
+          "A discounted fifty-year trajectory places major interventions at the predicted end of life, not at fixed intervals.",
       },
       {
-        label: "Critical Path Method programme",
+        label: "Value engineering as a break-even year",
         detail:
-          "Dependencies resolve into a Gantt timeline that exposes the driving path and float per activity.",
-      },
-      {
-        label: "30-year lifecycle OPEX outlook",
-        detail:
-          "A material degradation curve projects maintenance spend beyond handover, next to day-one CAPEX.",
+          "Alternative specifications are re-run through the same model and compared by the year the premium pays back.",
       },
     ],
     metrics: [
-      { label: "Lifecycle horizon", value: "30", unit: "yrs" },
-      { label: "Currency", value: "LKR" },
-      { label: "Status", value: "UI complete" },
+      { label: "Held-out R²", value: "0.9847" },
+      { label: "Lifecycle horizon", value: "50", unit: "yrs" },
+      { label: "Input parameters", value: "13" },
     ],
-    stack: ["Next.js", "TypeScript", "jsPDF", "SVG charting"],
+    stack: ["XGBoost", "scikit-learn", "Pandas", "BeautifulSoup", "ISO 15686-5"],
     href: "/dashboard/cost-estimation",
   },
 ] satisfies readonly Engine[];

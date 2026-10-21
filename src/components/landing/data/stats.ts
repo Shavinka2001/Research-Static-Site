@@ -4,41 +4,38 @@ import type { HeroStat } from "@/components/landing/types";
  * Headline figures for the hero strip.
  *
  * `provenance` is rendered as a title/tooltip so an examiner can trace each
- * number back to where it comes from. Three of these four are design targets
- * from the research proposal rather than figures measured by a benchmark in
- * this repository - keep the wording honest until an evaluation run exists,
- * then replace the provenance string with the dataset and sample size.
+ * number back to where it comes from. Every figure is reported in the Common
+ * Integrated Solution Report. The service life model was trained on a
+ * synthetic, physics-informed dataset, so these numbers describe the
+ * formulation rather than measured buildings. Keep that wording in place.
  */
 export const HERO_STATS: readonly HeroStat[] = [
   {
-    label: "Dimensional precision",
-    value: 99.2,
+    label: "Held-out R², service life",
+    value: 0.9847,
+    decimals: 4,
+    provenance:
+      "XGBoost service life model on a 200-record held-out partition of a 1 000-record synthetic dataset; RMSE 0.433 years.",
+  },
+  {
+    label: "Service life lost to site alone",
+    value: 36.1,
     suffix: "%",
     decimals: 1,
     provenance:
-      "Target precision for extracted plan dimensions. Pending formal evaluation against a measured ground-truth set.",
+      "Identical structure on four Sri Lankan site types: 17.71 years inland on neutral soil against 11.31 years coastal on acidic wet-zone soil.",
   },
   {
-    label: "Structural clash overlap",
-    value: 0,
-    suffix: "%",
-    decimals: 1,
+    label: "Clause-cited UDA rules",
+    value: 20,
     provenance:
-      "Post-resolution overlap after closed-loop GCR re-validation: a prescribed shift is only returned once the clash measures clear.",
+      "Encoded from the UDA Planning and Development Regulations 2021, alongside the full 144-cell floor area ratio schedule.",
   },
   {
-    label: "Automated UDA verification",
-    value: 100,
-    suffix: "%",
+    label: "Lifecycle horizon",
+    value: 50,
+    suffix: " yr",
     provenance:
-      "All four approval stages - geospatial, authority mapping, document verification, roadmap - run without manual hand-off.",
-  },
-  {
-    label: "Inference latency",
-    value: 3,
-    prefix: "<",
-    suffix: "s",
-    provenance:
-      "Target single-plan inference budget on the reference hardware. Measured end-to-end timings pending.",
+      "Discounted whole-life cost trajectory following ISO 15686-5, with replacement events at predicted end of life.",
   },
 ] satisfies readonly HeroStat[];

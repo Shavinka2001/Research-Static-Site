@@ -5,7 +5,7 @@ import type { SiteTab } from "@/components/landing/types";
  *
  * The order and the labels follow the brief: Home, Domain, Milestones,
  * Documents, Slides of past presentations, About us, Contact us. Keep them in
- * step with the routes under `src/app/(site)/`.
+ * step with the routes under `src/app/`.
  */
 export const SITE_TABS: readonly SiteTab[] = [
   {
