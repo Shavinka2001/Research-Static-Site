@@ -24,7 +24,7 @@ export const PROJECT_DOCUMENTS: readonly ProjectDocument[] = [
     kind: "proposal",
     author: "Research group",
     submittedOn: "2026-01-14",
-    href: null,
+    href: "/documents/R26-IT-154_Topic_Assessment_Form.pdf",
   },
   {
     id: "charter",
@@ -131,7 +131,8 @@ export const DOCUMENT_KIND_LABELS: Record<ProjectDocument["kind"], string> = {
 
 /*
  * ===========================================================================
- *  >>> PLACEHOLDER DATA — add the real slide links before publishing. <<<
+ *  Slide decks. Same convention as the documents above: copy the file into
+ *  public/documents/ and set `href`; `null` renders as "Not yet presented".
  * ===========================================================================
  */
 export const PRESENTATIONS: readonly Presentation[] = [
@@ -163,7 +164,7 @@ export const PRESENTATIONS: readonly Presentation[] = [
     id: "final-presentation",
     title: "Final Presentation",
     date: null,
-    href: null,
+    href: "/documents/R26-IT-154_Final_Presentation.pptx",
     summary:
       "Complete system demonstration, evaluation results and the research contribution.",
   },

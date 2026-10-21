@@ -107,8 +107,9 @@ export default function ContactPage() {
                 Message template
               </h2>
               <p className="mt-3 max-w-xl text-body leading-[1.7] text-slate-600">
-                Fill this in and it will open in your own mail application,
-                already addressed and formatted.
+                {process.env.NEXT_PUBLIC_WEB3FORMS_KEY
+                  ? "Fill this in and send it from here. We will reply to the address you give."
+                  : "Fill this in and it will open in your own mail application, already addressed and formatted."}
               </p>
 
               <div className="mt-8">
