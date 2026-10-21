@@ -3,8 +3,7 @@ import type { ContactChannel } from "@/components/landing/types";
 /*
  * ===========================================================================
  *  Contact details. Addresses are the ones printed on the group's research
- *  paper. No group telephone number has been supplied yet; add one here as
- *  a `tel:` channel when the group agrees which number to publish.
+ *  paper; the telephone number is the one the group chose to publish.
  * ===========================================================================
  */
 
@@ -13,6 +12,11 @@ export const GENERAL_CONTACTS: readonly ContactChannel[] = [
     label: "Group contact",
     value: "kavithashwinranaweera@gmail.com",
     href: "mailto:kavithashwinranaweera@gmail.com",
+  },
+  {
+    label: "Telephone",
+    value: "071 976 9164",
+    href: "tel:+94719769164",
   },
   {
     label: "Supervisor",

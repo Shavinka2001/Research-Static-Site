@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { ArrowUpRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
+import { FileActions } from "@/components/landing/primitives/FileActions";
 import { PageHeader } from "@/components/landing/primitives/PageHeader";
 import { Container, Section } from "@/components/landing/primitives/Section";
 import { Reveal } from "@/components/landing/primitives/Reveal";
@@ -72,60 +72,37 @@ export default function DocumentsPage() {
                   </h2>
 
                   <ul>
-                    {group.documents.map((doc) => {
-                      const isPending = doc.href === null;
-
-                      const content = (
-                        <>
-                          <span className="min-w-0 flex-1">
-                            <span
-                              className={cn(
-                                "block text-body font-semibold leading-snug",
-                                isPending ? "text-slate-500" : "text-ink"
-                              )}
-                            >
-                              {doc.title}
-                            </span>
-                            <span className="mt-1 block font-mono text-label text-slate-500">
-                              {doc.author}
-                              {doc.submittedOn
-                                ? ` · ${formatDate(doc.submittedOn)}`
-                                : ""}
-                            </span>
+                    {group.documents.map((doc) => (
+                      <li
+                        key={doc.id}
+                        className="flex min-h-touch flex-col gap-3 border-b border-slate-200 py-4 sm:flex-row sm:items-center sm:gap-4"
+                      >
+                        <span className="min-w-0 flex-1">
+                          <span
+                            className={cn(
+                              "block text-body font-semibold leading-snug",
+                              doc.href ? "text-ink" : "text-slate-500"
+                            )}
+                          >
+                            {doc.title}
                           </span>
+                          <span className="mt-1 block font-mono text-label text-slate-500">
+                            {doc.author}
+                            {doc.submittedOn
+                              ? ` · ${formatDate(doc.submittedOn)}`
+                              : ""}
+                          </span>
+                        </span>
 
-                          {isPending ? (
-                            <span className="shrink-0 lp-label text-slate-500">
-                              Pending
-                            </span>
-                          ) : (
-                            <span className="flex shrink-0 items-center gap-1.5 lp-label text-gold-ink">
-                              View
-                              <ArrowUpRight aria-hidden className="h-3.5 w-3.5" />
-                            </span>
-                          )}
-                        </>
-                      );
-
-                      return (
-                        <li key={doc.id}>
-                          {isPending ? (
-                            <div className="flex min-h-touch items-center gap-4 border-b border-slate-200 py-4">
-                              {content}
-                            </div>
-                          ) : (
-                            <a
-                              href={doc.href ?? "#"}
-                              target="_blank"
-                              rel="noreferrer noopener"
-                              className="lp-focus group flex min-h-touch items-center gap-4 border-b border-slate-200 py-4 transition-colors hover:bg-slate-50 ring-offset-white"
-                            >
-                              {content}
-                            </a>
-                          )}
-                        </li>
-                      );
-                    })}
+                        {doc.href ? (
+                          <FileActions href={doc.href} label={doc.title} />
+                        ) : (
+                          <span className="shrink-0 lp-label text-slate-500">
+                            Pending
+                          </span>
+                        )}
+                      </li>
+                    ))}
                   </ul>
                 </section>
               </Reveal>

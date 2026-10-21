@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { ArrowUpRight, Presentation as PresentationIcon } from "lucide-react";
+import { Presentation as PresentationIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
+import { FileActions } from "@/components/landing/primitives/FileActions";
 import { PageHeader } from "@/components/landing/primitives/PageHeader";
 import { Container, Section } from "@/components/landing/primitives/Section";
 import { Reveal } from "@/components/landing/primitives/Reveal";
@@ -73,18 +74,7 @@ export default function SlidesPage() {
                           Not yet presented
                         </span>
                       ) : (
-                        <a
-                          href={deck.href ?? "#"}
-                          target="_blank"
-                          rel="noreferrer noopener"
-                          className="lp-focus group inline-flex min-h-touch items-center gap-2 border-b border-ink/20 text-body-sm font-semibold text-ink transition-colors hover:border-gold ring-offset-white"
-                        >
-                          Open slides
-                          <ArrowUpRight
-                            aria-hidden
-                            className="h-4 w-4 text-gold-ink transition-transform group-hover:translate-x-0.5"
-                          />
-                        </a>
+                        <FileActions href={deck.href ?? "#"} label={deck.title} />
                       )}
                     </div>
                   </article>
