@@ -162,10 +162,10 @@ export const PRESENTATIONS: readonly Presentation[] = [
   },
   {
     id: "final-presentation",
-    title: "Final Presentation",
+    title: "Final Presentation and Viva",
     date: null,
     href: "/documents/R26-IT-154_Final_Presentation.pptx",
     summary:
-      "Complete system demonstration, evaluation results and the research contribution.",
+      "Actions taken on the PP2 panel comments, the problem in brief, the integrated system across all four components, and the evaluation results.",
   },
 ] satisfies readonly Presentation[];
